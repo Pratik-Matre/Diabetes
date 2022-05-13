@@ -13,22 +13,18 @@ def main():
 def predict():
     print(request.method)
     print('Hello world')
-    if request.method=="GET":
-        
-        Pregnancies_var=int(request.form.get('Pregnancies',type=int))
+    if request.method=="GET":   
+        Pregnancies_var=int(request.form.get('Pregnancies'))
         print(Pregnancies_var,type(Pregnancies_var))
-        Glucose_var=int(request.form.get('Glucose'))
-        BloodPressure_var=int(request.form.get('BloodPressure'))
-        SkinThickness_var=int(request.form.get('SkinThickness'))
-        Insulin_var=int(request.form.get('Insulin'))
-        BMI_var=int(request.form.get('BMI'))
-        DPF_var=int(request.form.get('DiabetesPedigreeFunction'))
+        Glucose_var=float(request.form.get('Glucose'))
+        BloodPressure_var=float(request.form.get('BloodPressure'))
+        SkinThickness_var=float(request.form.get('SkinThickness'))
+        Insulin_var=float(request.form.get('Insulin'))
+        BMI_var=float(request.form.get('BMI'))
+        DPF_var=float(request.form.get('DiabetesPedigreeFunction'))
         Age_var=int(request.form.get('Age'))
         result= model.predict([[Pregnancies_var,Glucose_var,BloodPressure_var,SkinThickness_var,Insulin_var,BMI_var,DPF_var,Age_var]])
         print("result>>",result)
-        
-        
-    return result
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=8080)
